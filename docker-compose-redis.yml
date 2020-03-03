@@ -77,7 +77,7 @@ services:
     depends_on:
       - redis-6
     volumes:
-      - ${PWD}/redis1.conf:/usr/local/etc/redis/redis.conf
+      - ${PWD}/redis5.conf:/usr/local/etc/redis/redis.conf
     networks:
       - redis_net
     command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
@@ -88,7 +88,7 @@ services:
     ports:
       - "6006:6006"
     volumes:
-      - ${PWD}/redis1.conf:/usr/local/etc/redis/redis.conf
+      - ${PWD}/redis6.conf:/usr/local/etc/redis/redis.conf
     networks:
       - redis_net
     command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
