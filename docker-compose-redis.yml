@@ -1,0 +1,94 @@
+---
+
+version: '3'
+
+networks:
+  redis_net:
+
+services:
+
+  redis-1:
+    container_name: redis-1
+    image: redis:latest
+    ports:
+      - "6001:6001"
+    depends_on:
+      - redis-2
+      - redis-3
+      - redis-4
+      - redis-5
+      - redis-6
+    volumes:
+      - ${PWD}/redis1.conf:/usr/local/etc/redis/redis.conf
+    networks:
+      - redis_net
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+
+  redis-2:
+    container_name: redis-2
+    image: redis:latest
+    ports:
+      - "6002:6002"
+    depends_on:
+      - redis-3
+      - redis-4
+      - redis-5
+      - redis-6
+    volumes:
+      - ${PWD}/redis2.conf:/usr/local/etc/redis/redis.conf
+    networks:
+      - redis_net
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+
+  redis-3:
+    container_name: redis-3
+    image: redis:latest
+    ports:
+      - "6003:6003"
+    depends_on:
+      - redis-4
+      - redis-5
+      - redis-6
+    volumes:
+      - ${PWD}/redis3.conf:/usr/local/etc/redis/redis.conf
+    networks:
+      - redis_net
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+
+  redis-4:
+    container_name: redis-4
+    image: redis:latest
+    ports:
+      - "6004:6004"
+    depends_on:
+      - redis-5
+      - redis-6
+    volumes:
+      - ${PWD}/redis4.conf:/usr/local/etc/redis/redis.conf
+    networks:
+      - redis_net
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+
+  redis-5:
+    container_name: redis-5
+    image: redis:latest
+    ports:
+      - "6005:6005"
+    depends_on:
+      - redis-6
+    volumes:
+      - ${PWD}/redis1.conf:/usr/local/etc/redis/redis.conf
+    networks:
+      - redis_net
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+
+  redis-6:
+    container_name: redis-6
+    image: redis:latest
+    ports:
+      - "6006:6006"
+    volumes:
+      - ${PWD}/redis1.conf:/usr/local/etc/redis/redis.conf
+    networks:
+      - redis_net
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
